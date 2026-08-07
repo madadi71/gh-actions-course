@@ -1,1 +1,1 @@
-# gh-actions-course
+Repository containing all examples and note for the GitHub Actions course.
