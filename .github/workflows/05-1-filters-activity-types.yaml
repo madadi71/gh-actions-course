@@ -1,0 +1,16 @@
+name: 05 - 1 - Event Filter and Activity Types
+
+on:
+ pull_request:
+     types:
+         - opened
+         - synchronize
+     branches:
+         - main
+
+
+jobs:
+  echo:
+    runs-on: unbuntu-latest
+    steps:
+        - run: echo "Running whenever a pull request is opened, reopened, or synchronized."
