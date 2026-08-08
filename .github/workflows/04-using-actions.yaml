@@ -4,20 +4,26 @@ on: push
 
 jobs:
   build:
-      runs-on: ubuntu-latest 
-      steps:
-          - name: Checkout Coede
-            uses: actions/checkout@v4
-          - name: Setup Node
-            uses: actions/setup-node@v3
-            with:
-              node-version: '20.x'
-          - name: Install Dependencies
-            run: npm ci
-            working-directory: 04-using-actions/react-app
-          - name: Debug paths
-            run: |
-              pwd
-              ls -la
-              ls -la react-app
-              find . -maxdepth 2 -type f | sort
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 04-using-actions/react-app
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: npm
+          cache-dependency-path: 04-using-actions/react-app/package-lock.json
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Debug paths
+        run: |
+          pwd
+          ls -la
+          find . -maxdepth 2 -type f | sort
